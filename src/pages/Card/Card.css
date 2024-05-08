@@ -1,0 +1,22 @@
+.card25{
+    width: 90%;
+    /* background-color: rgb(156, 156, 156); */
+    /* padding: 10px; */
+    padding-top: 5px;
+    border-radius: 15px;
+    margin: 8px;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.081);
+    text-align: center;
+}
+.link-details25{
+    text-decoration: none;
+    
+}
+.card25 p{
+    color: rgb(65, 61, 61);
+}
+
+.flex items-center gap-2{
+    color: black;
+}

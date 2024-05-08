@@ -1,0 +1,50 @@
+.card256{
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.flex items-center gap-2{
+    color: black;
+}
+.card-details{
+    text-align: center;
+    max-width: 1000px;
+}
+.card-details .container5 span{
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    margin-left: 15%;
+
+}
+.card2{
+    padding-top: 3px;
+}
+
+.card3{
+    padding-top: 3px;
+    padding-bottom: 10px;
+}
+
+
+.span-content{
+    text-align: left;
+    padding-right: 100px;
+}
+
+.span-content-left{
+    padding-left: 240px;    
+    
+}
+
+.content{
+    text-decoration: none;
+}
+
+.content :hover{
+    text-decoration: none;
+}

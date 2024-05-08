@@ -1,0 +1,112 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 18px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 50px;
+  text-decoration: none;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.toggle-menu {
+  display: none; /* Hide hamburger menu button by default */
+}
+
+.toggle-menu .hamburger {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.toggle-menu .hamburger.active {
+  transform: rotate(45deg);
+}
+
+.toggle-menu .hamburger::before,
+.toggle-menu .hamburger::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.toggle-menu .hamburger::before {
+  transform: translateY(-8px);
+}
+
+.toggle-menu .hamburger::after {
+  transform: translateY(8px);
+}
+
+.navbar-links.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #333;
+  padding: 10px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.toggle-bar {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.toggle-button {
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button.active {
+  background-color: #33963d;
+  color: #141212;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row-reverse; /* Change flex direction to reverse for hamburger menu to be on the right side */
+    padding: 10px;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .toggle-menu {
+    display: block; /* Show hamburger menu button */
+  }
+}

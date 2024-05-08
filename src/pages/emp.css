@@ -1,0 +1,24 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+} */
+.container .card26{
+    width: 30%;
+    height: 300px;
+    background-color: aqua;
+    border-radius: 15px;
+    margin-left: 450px;
+    text-align: center;
+}
+
+.container .card26 p{
+    word-spacing: 1px;
+    padding-top: 5%;
+    color: rgb(44, 42, 42);
+    text-align: center;
+}
+h2{
+    text-align: center;
+    padding: 40px 40px;
+}

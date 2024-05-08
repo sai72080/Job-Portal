@@ -1,0 +1,359 @@
+.Job {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    /* padding: 20px; */
+}
+
+.FindJob {
+    background-color: #e9dddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.search-bar input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.search-bar button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.browse-by {
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.Find {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+
+.sectors {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.sector {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    padding: 20px 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(199, 173, 173);
+    /* margin: 10px; */
+    text-align: center;
+}
+.sector img{
+    max-width: 100%;
+    max-height: 60%;
+    border-radius: 10px;
+}
+.sector img:hover{
+    scale: 1.15;
+    transition: all 0.3s;
+    
+}
+
+.sector h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    padding: 20px;
+}
+
+.sector p {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sector button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.Advance {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* max-height: 300px; */
+    display: flex;
+    /* Make benefit a flex container */
+    align-items: center;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    /* Added margin-top for button in header */
+}
+
+.benefits {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.benefit {
+    text-align: left;
+    width: 40%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+
+}
+
+.Advance img {
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 30%;
+    max-height: 30%;
+    margin-left: 15%;
+    margin-right: 35px;
+}
+.Advance img:hover{
+    scale: 1.15;
+    transition: all 0.3s;
+}
+
+.benefit h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.call-to-action {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.call-to-action button {
+    background-color: #007bff;
+    /* Same styling as button in header */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Assuming the image files are placed in the same directory as App.js */
+/* .Advance img {
+    width: 50%;
+    height: 10%;
+    padding: 50px 50px;
+    
+}
+.Advance img:hover{
+    border-radius: 20px;
+    scale: 1.12;
+    transition: all 0.3s;
+    border-radius: 10px;
+} */
+
+.card {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 20px;
+
+}
+
+li {
+    margin-bottom: 15px;
+    background-color: cyan;
+}
+
+li h3 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+li p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.card {
+    justify-content: center;
+}
+.card1{
+    width: 450px;
+    height: 300px;
+    background: linear-gradient(180deg, orange, rgb(249, 70, 100), rgb(244, 43, 244));
+    transition: all 0.3s;
+    /* margin-left: 45%; */
+    padding: 20px;
+}
+
+.child-card{
+    width: 100%;
+    height: 100%;
+    background-color: black;  
+    transition: all 0.3s;
+
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.card1:hover{
+    border-radius: 20px;
+    box-shadow: 0px 0px 100px #18dde9;
+
+}
+.card1:hover .child-card{
+    scale: 0.95;
+    border-radius: 20px;
+}
+
+.people{
+    display: flex;
+    justify-content: center;
+}
+.people .card1{
+    margin: 10px;
+
+}
+
+/* Styles for large screens */
+@media screen and (min-width: 768px) {
+    .FindJob {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .search-bar {
+        margin: 20px 0;
+    }
+
+    .sectors {
+        justify-content: space-around;
+    }
+
+    .benefits {
+        justify-content: space-around;
+    }
+}
+
+//* Responsive styles */
+@media screen and (max-width: 767px) {
+    .FindJob {
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar input {
+        width: calc(100% - 10px);
+        margin: 5px;
+    }
+
+    .search-bar button {
+        width: calc(100% - 10px);
+        margin: 5px;
+    }
+
+    .sectors {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sector {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .sector img {
+        max-width: 80%;
+    }
+
+    .Advance img {
+        max-width: 50%;
+        margin-right: 10px;
+    }
+
+    .benefits {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Larger screens */
+@media screen and (min-width: 768px) {
+    .FindJob {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .search-bar {
+        margin: 20px 0;
+    }
+
+    .sectors {
+        justify-content: space-around;
+    }
+
+    .benefits {
+        justify-content: space-around;
+    }
+}

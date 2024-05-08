@@ -1,0 +1,14 @@
+.job-list {
+    list-style-type: none;
+    padding: 0;
+    background-color: white;
+}
+.job-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.job-item:hover {
+    background-color: #f0f0f0;
+}
