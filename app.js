@@ -1,26 +1,23 @@
-const express = require("express")
+const express = require("express");
+const mongoose = require("mongoose");
 const OwnerModel = require("./owner");
 const EmployeeModel = require("./employee");
 const JobModel = require("./job");
-const cors = require("cors")
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+const cors = require("cors");
 
-
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/", cors(), (req, res) => {
-
-})
-
+  res.send("Welcome to the Job Portal API");
+});
 
 app.post("/login/owner", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const owner = await OwnerModel.findOne({ email, password, role: "owner" });
-
     if (owner) {
       res.json("exist");
     } else {
@@ -31,7 +28,6 @@ app.post("/login/owner", async (req, res) => {
     res.status(500).json("fail");
   }
 });
-
 
 app.post("/signup/owner", async (req, res) => {
   try {
@@ -46,10 +42,7 @@ app.post("/signup/owner", async (req, res) => {
       password,
       role: "owner",
     };
-
-    // Save owner data in the 'collection' collection
     await OwnerModel.create(ownerData);
-
     res.json("notexist");
   } catch (error) {
     console.error("Error in owner signup:", error);
@@ -69,10 +62,7 @@ app.post("/signup/employee", async (req, res) => {
       password,
       role: "employee",
     };
-
-    // Save employee data in a new 'employee' collection
     await EmployeeModel.create(employeeData);
-
     res.json("notexist");
   } catch (error) {
     console.error("Error in employee signup:", error);
@@ -83,9 +73,7 @@ app.post("/signup/employee", async (req, res) => {
 app.post("/login/employee", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const employee = await EmployeeModel.findOne({ email, password, role: "employee" });
-
     if (employee) {
       res.json("exist");
     } else {
@@ -99,31 +87,11 @@ app.post("/login/employee", async (req, res) => {
 
 app.post("/updateProfile", async (req, res) => {
   const { email, userName, contactNumber, shopName, location, pancardNumber } = req.body;
-
   try {
-    const updateFields = {
-      userName,
-      contactNumber,
-      shopName,
-      location,
-      pancardNumber,
-    };
-
-    // Remove undefined or null values from the updateFields
+    const updateFields = { userName, contactNumber, shopName, location, pancardNumber };
     Object.keys(updateFields).forEach(key => updateFields[key] === undefined && delete updateFields[key]);
-
-    const updatedUser = await OwnerModel.findOneAndUpdate(
-      { email: email },
-      {
-        $set: updateFields,
-      },
-      { new: true }
-    );
-
-    console.log("Received update request with data:", req.body);
-
+    const updatedUser = await OwnerModel.findOneAndUpdate({ email }, { $set: updateFields }, { new: true });
     console.log("Profile updated successfully:", updatedUser);
-
     res.json({ success: true, message: "Profile updated successfully" });
   } catch (error) {
     console.error("Error updating profile:", error);
@@ -131,11 +99,9 @@ app.post("/updateProfile", async (req, res) => {
   }
 });
 
-
 app.get("/getProfile", async (req, res) => {
   try {
     const userData = await OwnerModel.findOne({ email: req.query.email });
-
     if (userData) {
       res.json({ success: true, userData });
     } else {
@@ -148,9 +114,7 @@ app.get("/getProfile", async (req, res) => {
 });
 
 app.post("/postJob", async (req, res) => {
-  console.log(req.body); // Log the request body to debug
-
-  // Extract job data and user's email (jobPostedBy) from the request body
+  console.log(req.body);
   const {
     title,
     description,
@@ -166,11 +130,9 @@ app.post("/postJob", async (req, res) => {
     experienceLevel,
     companyLogo,
     employmentType,
-    jobPostedBy, // Assuming this is the email of the user who is posting the job
+    jobPostedBy,
   } = req.body;
-
   try {
-    // Create a jobData object including all job information and the poster's email
     const jobData = {
       title,
       description,
@@ -182,27 +144,21 @@ app.post("/postJob", async (req, res) => {
       maxSalary,
       salaryType,
       jobLocation,
-      postingDate: new Date(postingDate), // Ensure postingDate is stored as a Date object
+      postingDate: new Date(postingDate),
       experienceLevel,
       companyLogo,
       employmentType,
-      posterEmail: jobPostedBy, // Use jobPostedBy as posterEmail to associate this job with the user
+      posterEmail: jobPostedBy,
     };
-
-    // Save the job data to the database
     const newJob = await JobModel.create(jobData);
-
-    // Respond with success message
     res.json({ success: true, message: "Job posted successfully", job: newJob });
   } catch (error) {
     console.error("Error posting job:", error);
-    // Respond with error message
     res.status(500).json({ success: false, error: "Failed to post job." });
   }
 });
 
 app.get("/getMyJobs/:email", async (req, res) => {
-  // Fetch jobs posted by the user with the given email
   try {
     const jobs = await JobModel.find({ posterEmail: req.params.email });
     res.json({ success: true, jobs });
@@ -212,12 +168,13 @@ app.get("/getMyJobs/:email", async (req, res) => {
   }
 });
 
-
-
 app.delete("/deleteJob/:jobId", async (req, res) => {
-  // Delete a job
   try {
-    const job = await JobModel.findOneAndDelete({ _id: req.params.jobId, posterEmail: req.body.email });
+    const jobId = req.params.jobId;
+    const { email } = req.body;
+    console.log(`Delete request for jobId: ${jobId} by email: ${email}`);
+    const job = await JobModel.findOneAndDelete({ _id: jobId, posterEmail: email });
+
     if (job) {
       res.json({ success: true, message: "Job deleted successfully" });
     } else {
@@ -229,8 +186,6 @@ app.delete("/deleteJob/:jobId", async (req, res) => {
   }
 });
 
-
-
 app.get("/getJobs", async (req, res) => {
   try {
     const jobs = await JobModel.find({});
@@ -240,6 +195,7 @@ app.get("/getJobs", async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to fetch job data." });
   }
 });
+
 app.get("/getJob/:id", async (req, res) => {
   try {
     const job = await JobModel.findById(req.params.id);
@@ -253,42 +209,27 @@ app.get("/getJob/:id", async (req, res) => {
 app.post("/applyJob/:jobId", async (req, res) => {
   try {
     console.log('Received job application for ID:', req.params.jobId);
-
     const { email } = req.body;
     const { jobId } = req.params;
     console.log('Applicant email:', email);
-
-    // Check if the job ID is valid
     const job = await JobModel.findById(jobId);
-
     if (!job) {
       console.error('Invalid job ID:', jobId);
       return res.status(400).json({ success: false, error: "Invalid job ID." });
     }
-
-    // Check if the user has already applied
     if (!job.applicants) {
-      job.applicants = [];  // Initialize the applicants array if it doesn't exist
+      job.applicants = [];
     } else if (job.applicants.includes(email)) {
       console.error('User already applied for this job:', email);
       return res.status(400).json({ success: false, error: "User already applied for this job." });
     }
-
-
-    // Update the job document to mark the user as an applicant
-    const updatedJob = await JobModel.findByIdAndUpdate(
-      jobId,
-      { $push: { applicants: email } },
-      { new: true }
-    );
-
+    const updatedJob = await JobModel.findByIdAndUpdate(jobId, { $push: { applicants: email } }, { new: true });
     res.json({ success: true, message: "Application submitted successfully.", updatedJob });
   } catch (error) {
     console.error("Error submitting application:", error);
     res.status(500).json({ success: false, error: "Failed to submit application." });
   }
 });
-
 
 app.get('/getEmployees', async (req, res) => {
   try {
@@ -300,7 +241,6 @@ app.get('/getEmployees', async (req, res) => {
   }
 });
 
-// Update the endpoint to use findById to get the specific employee by ID
 app.get("/getEmployee/:id", async (req, res) => {
   try {
     const employee = await EmployeeModel.findById(req.params.id);
@@ -315,7 +255,6 @@ app.get("/getEmployee/:id", async (req, res) => {
   }
 });
 
-
 app.listen(8000, () => {
-  console.log("port connected");
-})
+  console.log("Server running on port 8000");
+});
