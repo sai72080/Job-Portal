@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://abhijitmahakul16:abhijit16102002@cluster0.fluayic.mongodb.net/")
+mongoose.connect("enter your mongodb url")
   .then(() => {
     console.log("MongoDB connected");
   })
